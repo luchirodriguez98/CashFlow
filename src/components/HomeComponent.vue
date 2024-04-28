@@ -11,10 +11,17 @@
       <Header></Header>
     </template>
     <template #resume>
-      <Resume></Resume>
+      <Resume 
+        :label="'Ahorro total'"
+        :amount='1000'
+      >
+      <template #graphic></template>
+      </Resume>
     </template>
     <template #movements>
-      <Movements></Movements>
+      <Movements>
+        <template #action></template>
+      </Movements>
     </template>
   </Layout>
 </template>
