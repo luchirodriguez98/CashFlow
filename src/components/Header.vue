@@ -6,14 +6,10 @@
   </header>
 </template>
 
-<script>
-export default {
-  methods: {
-    reload() {
+<script setup>
+    const reload = () => {
       location.reload();
-    },
-  },
-};
+    }
 </script>
 
 <style scoped>

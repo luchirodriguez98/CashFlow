@@ -1,6 +1,3 @@
-<script>
-</script>
-
 <template>
   <div class='splashscreen'>
     <img src="../assets/cashflow-icon.svg" alt="Logo">

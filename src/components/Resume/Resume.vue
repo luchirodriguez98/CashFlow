@@ -1,7 +1,7 @@
 <template>
   <main>
     <p>{{ labelVisual() }}</p>
-    <h1>{{ amountCurrency() }}</h1>
+    <h1>{{ amountCurrency }}</h1>
     <div class='graphic'>
       <slot name='graphic'>graphic</slot>
     </div>
@@ -12,7 +12,7 @@
 </template>
 
 <script setup>
-  import { defineProps } from 'vue'
+  import currencyFormatter from '@/js/CurrencyFormater.js';
 
   const props = defineProps({
     totalLabel: String,
@@ -35,13 +35,7 @@
     return props.amount !== null ? props.amount : props.totalAmount
   }
 
-  const amountCurrency = () => {
-    const currencyFormat = new Intl.NumberFormat("es-ES", {
-      style: "currency",
-      currency: "EUR"
-    })
-    return currencyFormat.format(amountVisual())
-  }
+  const amountCurrency = currencyFormatter(amountVisual())
 </script>
 
 <style scoped>
