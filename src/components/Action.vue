@@ -5,23 +5,23 @@
       <form @submit.prevent="submit">
                 <div class="field">
                     <label>Título</label>
-                    <input type="text" v-model="movement.title" />
+                    <input type="text" v-model="title" />
                 </div>
                 <div class="field">
                     <label>Monto</label>
-                    <input type="number" v-model="movement.amount" />
+                    <input type="number" v-model="amount" />
                 </div>
                 <div class="field">
                     <label>Descripción</label>
-                    <textarea rows="4" v-model="movement.description"></textarea>
+                    <textarea rows="4" v-model="description"></textarea>
                 </div>
                 <div class="field">
                     <label class="radio-label">
-                        <input type="radio" v-model="movement.type" value="Ingreso" />
+                        <input type="radio" v-model="movementType" value="Ingreso" />
                         <span>Ingreso</span>
                     </label>
                     <label class="radio-label">
-                        <input type="radio" v-model="movement.type" value="Gasto" />
+                        <input type="radio" v-model="movementType" value="Gasto" />
                         <span>Gasto</span>
                     </label>
                 </div>
@@ -34,21 +34,26 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue'
+  import { ref, defineEmits } from 'vue'
   import Modal from '../components/Modal.vue'
 
   const showModal = ref(false)
+  const title = ref("");
+  const amount = ref(0);
+  const description = ref("");
+  const movementType = ref("Ingreso");
+  const emit = defineEmits(["create"])
 
   const submit = () => {
       showModal.value = !showModal.value;
+      emit("create", {
+        id: new Date(),
+        title: title.value,
+        description: description.value,
+        amount: movementType.value === 'Ingreso' ? amount.value : -amount.value,
+        time: new Date()
+      })
   }
-
-  const movement = ref({
-    title: "",
-    amount: 0,
-    description: "",
-    type: "Ingreso",
-  });
 
 </script>
 

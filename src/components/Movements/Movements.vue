@@ -8,13 +8,14 @@
       :title='title'
       :description='description'
       :amount='amount'
-      @remove='remove'
+      @remove='remove(id)'
       />
     </div>
   </div>
 </template>
 
 <script setup>
+  import { defineEmits } from 'vue';
   import Movement from './Movement.vue'
 
   defineProps({
@@ -24,9 +25,10 @@
     }
   })
 
-  const remove = (id, movements) => {
-    const newList = movements.filter(movement => movement.id !== id)
-    return newList
+  const emit = defineEmits(["remove"])
+
+  const remove = (id) => {
+    emit("remove", id)
   }
 </script>
 

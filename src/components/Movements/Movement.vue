@@ -23,7 +23,7 @@
 
   const amountCurrency = currencyFormatter(props.amount)
 
-  const isNegative = props.amount > 0
+  const isNegative = props.amount < 0
 
   const emit = defineEmits(["remove"])
 
